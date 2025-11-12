@@ -1,0 +1,72 @@
+plugins {
+    //Aplicamos el plugin de Spring Boot
+    id 'org.springframework.boot' version '3.3.1'
+    //Aplicamos el plugin de Spring Dependency Management (gestiona versiones)
+    id 'io.spring.dependency-management' version '1.1.5'
+    // Aplicamos el plugin de Java
+    id 'java'
+}
+
+group = 'com.ecommerce' // Puedo cambiar esto por el nombre del proyecto/empresa
+version = '0.0.1-SNAPSHOT'
+
+
+java{
+    //Definimos la versión de Java que vamos a usar (Spring Boot 3.x requiere Java 17 o superior)
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+configurations {
+    compileOnly{
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    //Repositorio donde Grandle busca las librerias
+    mavenCentral()
+}
+
+dependencies {
+
+    //1. Core Web y REST API
+    implementation'org.springframework.boot:spring-boot-starter-web'
+
+    //2. Persistencia de Datos (JPA)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    //3. Driver de Base de Datos
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    //4. Lombok
+    //Es compileOnly porque solo se usa durante la compilacion
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // 5. Herramientas de Desarrollo (Opcional, pero muy útil)
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // 6. Dependencias de Testing (Vienen por defecto)
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // 7. CORE SECURITY: Habilita toda la infraestructura de seguridad de Spring
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    //8. JWT (JSON Web Tokens): Librería necesaria para generar y validar tokens de seguridad.
+    // Usaremos io.jsonwebtoken:jjwt-api para el núcleo y runtimeOnly para la implementacion.
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    //Mercado Pago
+    implementation 'com.mercadopago:sdk-java:2.1.21'
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

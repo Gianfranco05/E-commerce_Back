@@ -1,0 +1,4 @@
+[24/Oct/2025:18:53:08 -0300] 0:0:0:0:0:0:0:1 "OPTIONS /api/payments/create HTTP/1.1" 200 - 137754
+[24/Oct/2025:18:53:08 -0300] 0:0:0:0:0:0:0:1 "POST /api/payments/create HTTP/1.1" 401 - 27557
+[24/Oct/2025:21:57:11 -0300] 0:0:0:0:0:0:0:1 "OPTIONS /api/payments/create HTTP/1.1" 200 - 210954
+[24/Oct/2025:21:57:11 -0300] 0:0:0:0:0:0:0:1 "POST /api/payments/create HTTP/1.1" 401 - 45211
